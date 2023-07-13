@@ -10,7 +10,7 @@ fn ls(dir string) string {
 	}
 	mut result := '${dirname}\n\n'
 	for file in os.ls(dir) or { []string{} } {
-		result += if os.is_dir(file) {
+		result += if os.is_dir('${dir}/${file}') {
 			'=> ${file}/\n'
 		} else {
 			'=> ${file}\n'
