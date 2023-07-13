@@ -11,16 +11,7 @@ fn serve(mut connection net.TcpConn) {
 	} else if os.is_dir(path) {
 		ls(path)
 	} else if os.is_executable(path) {
-		// TODO mitigate TOCTOU attack (https://github.com/vlang/v/blob/master/vlib/os/README.md)
-		os.setenv('QUERY_STRING', query_string(request), true)
-		os.setenv('REMOTE_ADDR', (connection.addr() or {
-			net.Addr{
-				f: 0
-			}
-		}).str(), true)
-		os.setenv('SCRIPT_NAME', '${os.hostname() or { 'localhost' }}/${path}', true)
-
-		os.execute('./${path}').output
+		cgi(connection, request, path)
 	} else {
 		cat(path)
 	}
