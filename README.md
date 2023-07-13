@@ -1,6 +1,6 @@
 # vexed
 
-**vexed** is a server for the `[nex:// protocol](https://nex.nightfall.city/)`, with basic CGI support.
+**vexed** is a server for the [`nex:// protocol`](https://nex.nightfall.city/), with basic CGI support.
 
 ## But why?
 
