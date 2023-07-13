@@ -4,7 +4,7 @@ import net
 import os
 
 fn serve(mut connection net.TcpConn) {
-	path := connection.read_line().all_before('\r\n')
+	path := connection.read_line().all_before('\r\n').all_after('/')
 	result := if os.is_dir(path) {
 		ls('${os.getwd()}/${path}')
 	} else if path == '' {
