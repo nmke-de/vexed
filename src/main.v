@@ -19,7 +19,7 @@ fn main() {
 
 	// Loop
 	for {
-		mut connection := listener.accept()!
+		mut connection := listener.accept() or { continue }
 		spawn serve(mut connection)
 	}
 }
