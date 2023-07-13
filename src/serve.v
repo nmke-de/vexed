@@ -8,7 +8,10 @@ fn serve(mut connection net.TcpConn) {
 	result := if path == '..' || path.ends_with('/..') || path == '' {
 		ls(os.getwd())
 	} else if os.is_dir(path) {
-		ls('${os.getwd()}/${path}')
+		ls(path)
+	} else if os.is_executable(path) {
+		// TODO mitigate TOCTOU attack (https://github.com/vlang/v/blob/master/vlib/os/README.md)
+		os.execute('./${path}').output
 	} else {
 		cat(path)
 	}
