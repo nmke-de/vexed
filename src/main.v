@@ -8,8 +8,6 @@ fn main() {
 	// Loop
 	for {
 		mut connection := listener.accept()!
-		path := connection.read_line()
-		connection.write_string('${path}\r\n')!
-		connection.close()!
+		spawn serve(mut connection)
 	}
 }
