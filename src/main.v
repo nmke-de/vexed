@@ -12,7 +12,10 @@ fn main() {
 	os.setenv('SERVER_PROTOCOL', 'nex/1.0', true)
 	os.setenv('SERVER_SOFTWARE', '1', true)
 
-	mut listener := net.listen_tcp(net.AddrFamily.ip, ':1900')!
+	mut listener := net.listen_tcp(net.AddrFamily.ip, ':1900') or {
+		println('Failed to listen on Port 1900.')
+		C.exit(1)
+	}
 
 	// Loop
 	for {
