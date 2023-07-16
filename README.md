@@ -12,6 +12,8 @@ Also, this serves as an exercise to learn the [V programming language](https://v
 
 Don't use this server if the CGI scripts you call may harm your system. **vexed** does *not* check whether the scripts it calls are secure, and does not have sandboxing capabilities builtin.
 
+Any executable file which is requested is considered a CGI script by **vexed**.
+
 ## Dependencies
 
 **vexed** relies on being able to listen to port `1900` for incoming TCP connections.
